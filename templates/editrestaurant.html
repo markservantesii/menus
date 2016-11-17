@@ -1,0 +1,25 @@
+<html>
+<head>
+    <!-- <link rel = stylesheet type = text/css
+        href = "{{url_for('static',filename = 'styles.css')}}"> -->
+
+  <link rel="stylesheet" type="text/css" href="{{url_for('static',filename = 'css/bootstrap.min.css')}}">
+  <link rel = "stylesheet" type = "text/css" href = "{{url_for('static',filename = 'restaurants.css')}}">
+  <link href="https://fonts.googleapis.com/css?family=Cinzel:900|Open+Sans:300" rel="stylesheet">
+</head>
+<body>
+    <h3>Edit Restaurant</h3>
+    <form action="{{url_for('editRestaurant',restaurant_id=restaurant.id)}}" method = 'POST'>
+
+    <span>Name:</span>
+    <input type = 'text' size='30' name = 'name' placeholder = '{{restaurant.name}}'>
+    <input type = 'submit' value = 'Edit'>
+    </form>
+
+    {% if error %}
+    <p style= "color:red">{{error}}</p>
+    {% endif %}
+
+    <p><a href = '{{url_for("showRestaurants")}}'>Cancel</a></p>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="{{url_for('static',filename = 'css/bootstrap.min.css')}}">
+
+  <link rel = "stylesheet" type = "text/css" href = "{{url_for('static',filename = 'restaurants.css')}}">
+  <link href="https://fonts.googleapis.com/css?family=Cinzel:900|Open+Sans:300" rel="stylesheet">
+
+</head>
+<body>
+<div class = "container-fluid">
+
+<div class = "header-block">
+<h1>Restaurants</h1>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+
+    <div>
+    {% for message in messages %}
+      <p style="color:red"><strong>{{message}}</strong></p>
+      {% endfor %}
+    </div>
+    <br>
+    {% endif %}
+    {% endwith %}
+
+<p><a href = "{{url_for('newRestaurant')}}" >Add a restaurant</a></p>
+</div>
+
+{% if restaurants %}
+    <div class = "row bottom-space">
+        <div class = "col-md-2"></div>
+        <div class = "col-md-8">
+            <div>
+            {% for r in restaurants %}
+                <h2>({{r.id}}) <a href = '{{url_for("showMenu",restaurant_id = r.id)}}'>{{r.name}}</a>
+                    <small class = "text-muted">(
+                    <a href = '{{url_for("editRestaurant",restaurant_id = r.id)}}'>Edit</a> |
+                    <a href = '{{url_for("deleteRestaurant", restaurant_id = r.id)}}'> Delete </a>)
+                    </small>
+                </h2>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+    <p>You currently have no restaurants.</p>
+
+{% endif %}
+
+</body>
+</html>
+
+<!--
+Header div
+<div>
+
+</div>
+
+ restaurant list div
+<div>
+
+</div> -->
